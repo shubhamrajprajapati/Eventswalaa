@@ -1,0 +1,4 @@
+FA3333
+F8C875,A0783C  linear
+000000,
+ffffff

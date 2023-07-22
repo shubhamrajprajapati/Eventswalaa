@@ -1,0 +1,284 @@
+<?php echo '<?xml version="1.0" encoding="UTF-8"?>' ?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{{-- @foreach($categories as $doctor)
+    <url>
+        <loc>{{ URL::route("doctors.show", [$doctor->id]) }}</loc>
+        <lastmod>{{ gmdate(DateTime::W3C, strtotime($doctor->updated_at)) }}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+@endforeach
+
+@foreach($patients as $patient)
+    <url>
+        <loc>{{ URL::route("patients.show", [$patient->id]) }}</loc>
+        <lastmod>{{ gmdate(DateTime::W3C, strtotime($patient->updated_at)) }}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+@endforeach --}}
+
+<url>
+  <loc>https://eventswalaa.com/</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-reception</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/engagement-ceremony</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-anniversary</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/birthday-party</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/birthday-party-for-kids</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/corporate-party</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/corporate-training</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/blog</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/contact-us</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/login</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/register</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/list-your-business</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/about-us</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/faq</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/privacy-policy</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/terms-and-conditions</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/search?_token=uIBhs8pC1a8BvyL9CTWPc1PfHFoMIr48kr2HukL2&amp;search=All</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/search?_token=YFjP4WRWg8VO2q9onx6CmKWRBaU5i7bReNKXE1uH&amp;search=&amp;search=Hotels</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/search?_token=YFjP4WRWg8VO2q9onx6CmKWRBaU5i7bReNKXE1uH&amp;search=Resorts</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/search?_token=YFjP4WRWg8VO2q9onx6CmKWRBaU5i7bReNKXE1uH&amp;search=Restaurants</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/search?_token=YFjP4WRWg8VO2q9onx6CmKWRBaU5i7bReNKXE1uH&amp;search=Bars+and+nightclubs</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/search?_token=YFjP4WRWg8VO2q9onx6CmKWRBaU5i7bReNKXE1uH&amp;search=Conference+centers</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/search?_token=YFjP4WRWg8VO2q9onx6CmKWRBaU5i7bReNKXE1uH&amp;search=Theaters</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/vardaan-banquet-and-party-lawn-in-dwarka-delhi-00001</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/saffron-banquet-00003</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/rivaah-celebrations-00004</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/sukhsaroj-hotel-resorts-00005</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/hotel-capital-inn</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/saundhi-rasoi</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/the-sky-boat</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/divine-dreams-farm-banquet</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/gtl-shriram-farm</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/farms-n-frolics</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/dkrrish-green-beauty-farms</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/naina-farms-and-resorts</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/travamigo-london-farm-resort</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/roozbeh-farms-and-resort</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/samar-farms-00017</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/js-contemporary-oriental</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/wedding-ceremony/radisson-blu-mbd-hotel-noida</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/birthday-party/precious-moments-banquet-new-delhi-00002</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/venue/corporate-party/saffron-banquet-babas-lavanya-hospitality-00006</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/blog/birthday-party-ideas</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/blog/corporate-events</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/password/reset</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/blog/birthday-party-ideas/choosing-the-right-corporate-party-venue-00001</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/blog/birthday-party-ideas/the-great-indian-wedding-choreography-00003</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/blog/corporate-events/reasons-to-book-your-wedding-makeup-artist-at-the-earliest-0002</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://eventswalaa.com/blog/corporate-events/unique-and-best-rose-mehndi-designs-for-brides-and-bridesmaids-0004</loc>
+  <lastmod>2023-06-06T07:04:17+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
+</urlset>
