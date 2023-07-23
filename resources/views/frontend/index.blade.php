@@ -79,7 +79,7 @@
                         </select>
                     </div>
                     <div class="col-md-6 mb-2  p-0 ui-widget">
-                        <input type="text" name="search" id="dam" value="{{ Request::get('city') }}"
+                        <input type="text" name="city" id="dam" value="{{ Request::get('city') }}"
                             class="form-control search-slt" placeholder="Enter City" autocomplete="off">
                         <div id="dam_return" class="h-350 bg-white" onclick="myFunction()">
                             <div class=" pl-5 dropdown-content" id="myDIV" style="width:100%;">
