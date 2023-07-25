@@ -87,6 +87,20 @@
             background-color: #3e8e41;
         }
     </style>
+
+    @php
+        function insertHiddenField($key)
+        {
+            $value = Request::get($key) ?? '';
+            if ($value != '') {
+                $value = Request::get($key);
+                echo "<input type='hidden' id='$key' name='$key' value='$value'>";
+            } else {
+                echo null;
+            }
+        }
+    @endphp
+
     <section class="">
         <div class="container pb-4">
             <div class="row mt-4 justify-content-center">
@@ -97,18 +111,14 @@
                 </div>
             </div>
             <form action="{{ url('search') }}" id="search-form" method="GET" role="search">
-                @csrf
+
+                {{ insertHiddenField('_token') }}
+                {{ insertHiddenField('event') }}
                 <div class="row justify-content-center">
-                    {{-- <div class="col-md-3 p-0">
-                        <select class="form-control search-slt" id="exampleFormControlSelect1">
-                            @foreach ($categories as $categoryitem)
-                            <option value="{{ $categoryitem->id }}">
-                                {{ $categoryitem->name }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div> --}}
+
                     <div class="col-md-4 mb-2  p-0 ui-widget">
+
+
                         <input type="search" name="city" id="dam" value="{{ Request::get('city') }}"
                             class="form-control search-slt" placeholder="Enter City" autocomplete="off">
                         <div id="dam_return" class="h-350 bg-white" onclick="myFunction()">
@@ -164,13 +174,21 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-md-3 p-0">
-                        <input type="search" name="city" value="{{ Request::get('search')}}" class="form-control search-slt"  placeholder="Enter local address - City - Venue Name or Other">
-                    </div> --}}
+                    {{ insertHiddenField('hotel') }}
+
                     <div class="col-md-3 mb-2  p-0 ui-widget">
-                        <input type="search" name="near_by" id="tags" value="{{ Request::get('near_by') }}"
-                            class="form-control search-slt" placeholder="Enter Neawer by">
+                        <input type="search" name="near_by" id="near_by" value="{{ Request::get('near_by') }}"
+                            class="form-control search-slt" placeholder="Near by">
                     </div>
+                    {{ insertHiddenField('type') }}
+                    {{ insertHiddenField('hotels') }}
+                    {{ insertHiddenField('resorts') }}
+                    {{ insertHiddenField('restaurants') }}
+                    {{ insertHiddenField('bars_nightclubs') }}
+                    {{ insertHiddenField('conference_centers') }}
+                    {{ insertHiddenField('theaters') }}
+
+                    {{ insertHiddenField('price') }}
                     <div class="col-md-2 p-0">
                         <button type="submit" class="btn btn-primary wrn-btn">Search</button>
                     </div>
@@ -181,120 +199,208 @@
     <section>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="my-1">
-                        <div class="h4 mb-4">
-                            Search Results
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-header">
                             <div class="h6">
-                                Event Type
+                                Filter by Event and Hotel Name
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="my-2">
-                                <a class="text-dark"
-                                    href="{{ url('/search?_token=uIBhs8pC1a8BvyL9CTWPc1PfHFoMIr48kr2HukL2&search=All') }}">All
-                                </a>
-                            </div>
-                            <div class="my-2">
-                                <a class="text-dark"
-                                    href="{{ url('/search?_token=YFjP4WRWg8VO2q9onx6CmKWRBaU5i7bReNKXE1uH&search=&search=Hotels') }}">Hotels
-                                </a>
-                            </div>
-                            <div class="my-2">
-                                <a class="text-dark"
-                                    href="{{ url('/search?_token=YFjP4WRWg8VO2q9onx6CmKWRBaU5i7bReNKXE1uH&search=Resorts') }}">Resorts
-                                </a>
-                            </div>
-                            <div class="my-2">
-                                <a class="text-dark"
-                                    href="{{ url('/search?_token=YFjP4WRWg8VO2q9onx6CmKWRBaU5i7bReNKXE1uH&search=Restaurants') }}">Restaurants
-                                </a>
-                            </div>
-                            <div class="my-2">
-                                <a class="text-dark"
-                                    href="{{ url('/search?_token=YFjP4WRWg8VO2q9onx6CmKWRBaU5i7bReNKXE1uH&search=Bars+and+nightclubs') }}">Bars
-                                    and nightclubs </a>
-                            </div>
-                            <div class="my-2">
-                                <a class="text-dark"
-                                    href="{{ url('/search?_token=YFjP4WRWg8VO2q9onx6CmKWRBaU5i7bReNKXE1uH&search=Conference+centers') }}">Conference
-                                    centers </a>
-                            </div>
-                            <div class="my-2">
-                                <a class="text-dark"
-                                    href="{{ url('/search?_token=YFjP4WRWg8VO2q9onx6CmKWRBaU5i7bReNKXE1uH&search=Theaters') }}">Theaters
-                                </a>
-                            </div>
+                            <form method="get" class="mb-0">
+                                {{ insertHiddenField('_token') }}
+                                <div class="mb-2">
+                                    <select class="form-control search-slt" id="event" name="event" required>
+                                        <option value="">Select your event type </option>
+                                        @foreach ($categories as $categoryitem)
+                                            <option value="{{ $categoryitem->name }}"
+                                                {{ $categoryitem->name == Request::get('event') ? 'selected' : '' }}>
+                                                {{ $categoryitem->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                {{ insertHiddenField('city') }}
+                                {{ insertHiddenField('near_by') }}
+                                <div class="mt-2">
+                                    <input type="search" name="hotel" id="hotel"
+                                        value="{{ Request::get('hotel') }}" class="form-control search-slt"
+                                        placeholder="Enter hotel name">
+                                </div>
+
+                                {{ insertHiddenField('type') }}
+                                {{ insertHiddenField('hotels') }}
+                                {{ insertHiddenField('resorts') }}
+                                {{ insertHiddenField('restaurants') }}
+                                {{ insertHiddenField('bars_nightclubs') }}
+                                {{ insertHiddenField('conference_centers') }}
+                                {{ insertHiddenField('theaters') }}
+
+                                {{ insertHiddenField('price') }}
+
+                                <button type="submit" class="btn btn-primary btn-sm mt-3 btn-block">Search</button>
+                            </form>
                         </div>
                     </div>
-                    {{-- <div class="card">
-            <div class="card-header">
-                <div class="h6">
-                    Filter by city
-                </div>
-            </div>
-            <div class="card-body">
-                @foreach ($products as $cityItem)
-                    <div class="d-block">
-                        <input type="checkbox"> {{ $cityItem->city}}
-                    </div>
-                @endforeach
-            </div>
-        </div>
-           @if ($category->brands)
-        <div class="card mt-4">
-            <div class="card-header">
-                <div class="h6">
-                    Filter Your Search
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="mt-2">
-                    @foreach ($category->brands as $brandItem)
-                       <div class="row">
-                            <div class="col-lg-12">
-                                <label for="d-block">
-                                    <input type="checkbox" wire:model="brandInputs" value="{{$brandItem->name}}" /> {{$brandItem->name}} 
-                                </label>
-                            </div>
-                       </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        @endif --}}
+
                     <div class="card mt-4">
+                        <div class="card-header">
+                            <div class="h6">
+                                Filter By Type
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form method="get" class="mb-0">
+                                {{ insertHiddenField('_token') }}
+                                {{ insertHiddenField('event') }}
+                                {{ insertHiddenField('city') }}
+                                {{ insertHiddenField('near_by') }}
+                                {{ insertHiddenField('hotel') }}
+
+                                <div class="form-check">
+                                    <input class="form-check-input eventType" type="checkbox" name="type"
+                                        value="all" id="type"
+                                        {{ Request::get('type') == 'all' ? 'checked' : '' }}
+                                        onchange="selectAllEventType(this, 'eventType');">
+                                    <label class="form-check-label" for="type">
+                                        All
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input eventType" type="checkbox" name="hotels"
+                                        value="hotels" id="hotels"
+                                        {{ Request::get('hotels') == 'hotels' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="hotels">
+                                        Hotels
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input eventType" type="checkbox" name="resorts"
+                                        value="resorts" id="resorts"
+                                        {{ Request::get('resorts') == 'resorts' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="resorts">
+                                        Resorts
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input eventType" type="checkbox" name="restaurants"
+                                        value="restaurants" id="restaurants"
+                                        {{ Request::get('restaurants') == 'restaurants' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="restaurants">
+                                        Restaurants
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input eventType" type="checkbox" name="bars_nightclubs"
+                                        value="bars_nightclubs" id="bars_nightclubs"
+                                        {{ Request::get('bars_nightclubs') == 'bars_nightclubs' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="bars_nightclubs">
+                                        Bars and Nightclubs
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input eventType" type="checkbox" name="conference_centers"
+                                        value="conference_centers" id="conference_centers"
+                                        {{ Request::get('conference_centers') == 'conference_centers' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="conference_centers">
+                                        Conference Centers
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input eventType" type="checkbox" name="theaters"
+                                        value="theaters" id="theaters"
+                                        {{ Request::get('theaters') == 'theaters' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="theaters">
+                                        Theaters
+                                    </label>
+                                </div>
+
+                                {{ insertHiddenField('price') }}
+
+                                <button class="btn btn-primary btn-sm mt-3 btn-block">Submit</button>
+
+                            </form>
+
+                            <script>
+                                const selectAllEventType = (source, className) => {
+                                    checkboxes = document.getElementsByClassName(className);
+                                    for (var i = 0, n = checkboxes.length; i < n; i++) {
+                                        checkboxes[i].checked = source.checked;
+                                    }
+                                }
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="card my-4">
                         <div class="card-header">
                             <div class="h6">
                                 Filter by price
                             </div>
                         </div>
+
                         <div class="card-body">
-                            <div class="mt-2">
-                                <label for="d-block">
-                                    <input type="radio" name="priceSort" wire:model="priceInput"
-                                        value="high-to-low" /> High to low
-                                </label>
-                                <p>
-                                    <label for="d-block">
-                                        <input type="radio" name="priceSort" wire:model="priceInput"
-                                            value="low-to-high" /> Low to high
+                            <form method="get" class="mb-0">
+                                {{ insertHiddenField('_token') }}
+                                {{ insertHiddenField('event') }}
+                                {{ insertHiddenField('city') }}
+                                {{ insertHiddenField('near_by') }}
+                                {{ insertHiddenField('hotel') }}
+
+                                {{ insertHiddenField('type') }}
+                                {{ insertHiddenField('hotels') }}
+                                {{ insertHiddenField('resorts') }}
+                                {{ insertHiddenField('restaurants') }}
+                                {{ insertHiddenField('bars_nightclubs') }}
+                                {{ insertHiddenField('conference_centers') }}
+                                {{ insertHiddenField('theaters') }}
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="price" id="low-to-high"
+                                        value="low-to-high" {{ Request::get('price') == 'low-to-high' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="low-to-high">
+                                        Low to High
                                     </label>
-                                </p>
-                            </div>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="price" id="high-to-low"
+                                        value="high-to-low" {{ Request::get('price') == 'high-to-low' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="high-to-low">
+                                        High to Low
+                                    </label>
+                                </div>
+                                <div class="btn-group mt-3 w-100">
+                                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                                    <button class="btn btn-danger btn-sm" type="submit"
+                                        onclick="resetPriceInput();">Reset</button>
+                                </div>
+
+                            </form>
+
+                            <script>
+                                const resetPriceInput = () => {
+                                    var ele = document.getElementsByName("price");
+                                    for (var i = 0; i < ele.length; i++)
+                                        ele[i].checked = false;
+                                }
+                            </script>
+
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-8">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12 pb-4">
+                    <div class="row justify-content-center pb-2">
+                        <div class="col-lg-4 px-0">
+                            <h4>Search Results ({{ $totalResults }})</h4>
+                        </div>
+                        <div class="col-lg-8 pb-2 text-right">
                             {{ $searchProducts->appends(request()->input())->links() }}
                         </div>
                     </div>

@@ -69,10 +69,10 @@
                 @csrf
                 <div class="row justify-content-center p-4">
                     <div class="col-md-3 mb-2  p-0">
-                        <select class="form-control search-slt" id="exampleFormControlSelect1" required>
+                        <select class="form-control search-slt" id="event" name="event" required>
                             <option value="">Select your event type </option>
                             @foreach ($categories as $categoryitem)
-                                <option value="{{ $categoryitem->id }}">
+                                <option value="{{ $categoryitem->name }}">
                                     {{ $categoryitem->name }}
                                 </option>
                             @endforeach

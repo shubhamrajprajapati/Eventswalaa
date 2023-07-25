@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="col-lg-12 ">
                     <div class="h-0 text-center mt-5 mb-4" style="text-shadow: 2px 2px #FF0000;">
-                        Find & Book the Best Venue for Your Special Event ss
+                        Find & Book the Best Venue for Your Special Event
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -142,14 +142,16 @@
                         </div>
                         <div class="card-body">
                             <div class="mt-2">
-                                <label for="d-block">
-                                    <input type="radio" name="priceSort" wire:model="priceInput" value="high-to-low" />
+                                <label for="price">
+                                    <input type="radio" name="price" id="price" wire:model="priceInput"
+                                        value="high-to-low" />
                                     High to low
                                 </label>
                                 <p>
-                                    <label for="d-block">
-                                        <input type="radio" name="priceSort" wire:model="priceInput"
-                                            value="low-to-high" /> Low to high
+                                    <label for="price">
+                                        <input type="radio" name="price" id="price" wire:model="priceInput"
+                                            value="low-to-high" />
+                                        Low to high
                                     </label>
                                 </p>
                             </div>

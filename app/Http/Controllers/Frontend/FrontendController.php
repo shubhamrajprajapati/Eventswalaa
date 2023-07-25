@@ -92,51 +92,88 @@ class FrontendController extends Controller
           return view('frontend.terms-and-conditions');
      }
 
+
+
      public function searchProducts(Request $request)
      {
-          // $searchcategories = Category::where('status', '0')->get();
-          $searchProducts = Product::where('name', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('city', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('state', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('near_by', 'LIKE', '%' . $request->near_by . '%')
-               ->orWhere('full_address', 'LIKE', '%' . $request->city . '%')
-               //    ->orWhere('category_id', 'LIKE', '%'.$request->city.'%')
-               //    ->orWhere('description', 'LIKE', '%'.$request->city.'%')
-               ->orWhere('hotel_type', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('all', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('hotels', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('resorts', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('restaurants', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('bars_nightclubs', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('conference_centers', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('theaters', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('corporate_party', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('wedding_ceremony', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('wedding_anniversary', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('birthday_party', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('engagement_ceremony', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('wedding_reception', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('birthday_party_for_kids', 'LIKE', '%' . $request->city . '%')
-               ->orWhere('corporate_training', 'LIKE', '%' . $request->city . '%')
-               ->latest()->paginate(50);
-          return view('frontend.venue.products.search', compact('searchProducts'));
+          $event = str_replace(" ", "_", strtolower($request->event ?? "")); // for searching event if one hotel host more than one event
+          $city = $request->city ?? "";
+          $near_by = $request->near_by ?? "";
+          $hotel = $request->hotel ?? "";
 
-          // if ($request->city) {
-          //     $searchProducts = Product::where('name', 'LIKE', '%'.$request->city.'%')
-          //     ->orWhere('city', 'LIKE', '%'.$request->city.'%')
-          //     ->orWhere('state', 'LIKE', '%'.$request->city.'%')
-          //     ->orWhere('near_by', 'LIKE', '%'.$request->city.'%')
-          //     ->orWhere('full_address', 'LIKE', '%'.$request->city.'%')
-          //     ->orWhere('category_id', 'LIKE', '%'.$request->city.'%')
-          //     ->orWhere('description', 'LIKE', '%'.$request->city.'%')
-          //     ->orWhere('hotel_type', 'LIKE', '%'.$request->city.'%')
-          //     ->latest()->paginate(50);
-          //     return view('frontend.venue.products.search', compact('searchProducts'));
-          // } 
-          // else{
-          //     return redirect('/');
-          //     return redirect()->back()->with('message', 'Empty search !!!');
-          // }
+          // Price filter
+          $price = $request->price ?? "";
+
+          // Event Type Checkbox
+          $hotels = $request->hotels ?? "";
+          $resorts = $request->resorts ?? "";
+          $restaurants = $request->restaurants ?? "";
+          $bars_nightclubs = $request->bars_nightclubs ?? "";
+          $conference_centers = $request->conference_centers ?? "";
+          $theaters = $request->theaters ?? "";
+
+          $query = Product::query()->where('status', '0');
+
+          if ($event != "") {
+               $query->where($event, $event);
+          }
+
+          if ($city != "") {
+               $query->where('city', 'LIKE', '%' . $request->city . '%');
+               $query->where('state', 'LIKE', '%' . $request->city . '%');
+          }
+
+          if ($near_by != "") {
+               $query->where('near_by', 'LIKE', '%' . $request->near_by . '%');
+               $query->orWhere('full_address', 'LIKE', '%' . $request->near_by . '%');
+          }
+
+          if ($hotel != "") {
+               $query->where('name', 'LIKE', '%' . $request->hotel . '%');
+          }
+
+          if ($price != "") {
+               if ($price == 'low-to-high') {
+                    $query->orderBy('veg_sell_price_one', 'asc');
+                    $query->orderBy('non_sell_price_one', 'asc');
+               } elseif ($price == 'high-to-low') {
+                    $query->orderBy('veg_sell_price_one', 'desc');
+                    $query->orderBy('non_sell_price_one', 'desc');
+               }
+          }
+
+          // Event type category
+
+          if ($hotels != "") {
+               $query->where($hotels, $hotels);
+          }
+
+          if ($resorts != "") {
+               $query->where($resorts, $resorts);
+          }
+
+          if ($restaurants != "") {
+               $query->where($restaurants, $restaurants);
+          }
+
+          if ($bars_nightclubs != "") {
+               $query->where($bars_nightclubs, $bars_nightclubs);
+          }
+
+          if ($conference_centers != "") {
+               $query->where($conference_centers, $conference_centers);
+          }
+
+          if ($theaters != "") {
+               $query->where($theaters, $theaters);
+          }
+
+          $searchProducts = $query->latest()->paginate(50);
+          $totalResults = $query->count();
+
+          $categories = Category::where('status', '0')->get();
+
+          return view('frontend.venue.products.search', compact('searchProducts', 'categories', 'totalResults'));
      }
 
      public function filterAll()
