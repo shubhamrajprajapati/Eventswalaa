@@ -651,7 +651,7 @@
                         <div class="col-lg-12">
                            <input type="hidden" name="product_id" value="{{$product->id }} ">
                            <div class="form-group"  >
-                              <select name="occasion_type" required id="" class="form-control" >
+                              <select name="occasion_type" required id="occasion_type" class="form-control" >
                                  <option value=""> Select Your Event</option>
                                 
                                  <option value="Wedding Ceremony"> Wedding Ceremony</option>
@@ -878,7 +878,7 @@
           <div class="modal-header">
               <h6 class="modal-title" id="exampleModalLabel">
                   <div class="h6 mb-4">
-                      Check availability &amp; price
+                      Check availability & price
                    </div>
                 </h6>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -895,8 +895,8 @@
                               <div class="row">
                                  <div class="col-lg-12">
                                       <input type="hidden" name="product_id" value="{{$product->id }} ">
-                                    <div class="form-group"  >
-                                       <select name="occasion_type" required id="" class="form-control" >
+                                    <div class="form-group">
+                                       <select name="occasion_type" required id="occasion_type" class="form-control" >
                                           <option value=""> Select Your Event</option>
                                          
                                           <option value="Wedding Ceremony"> Wedding Ceremony</option>

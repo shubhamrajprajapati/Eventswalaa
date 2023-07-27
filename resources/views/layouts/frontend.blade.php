@@ -30,6 +30,8 @@
         rel="stylesheet">
     <!-- Scripts -->
 
+
+
     {{-- php -S localhost:8000 -t public/ npm run build --}}
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/fontawesome/all.min.css')}}"> --}}
@@ -88,7 +90,6 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script> --}}
 
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
 
     <script>
         $(document).ready(function() {
@@ -128,13 +129,13 @@
         });
     </script>
     <script>
-        $(window).on('load', function() {
-            var delayMs = 10000; // 150000 delay in milliseconds
+        // $(window).on('load', function() {
+        //     var delayMs = 10000; // 150000 delay in milliseconds
 
-            setTimeout(function() {
-                $('#inqueryModal').modal('show');
-            }, delayMs);
-        });
+        //     setTimeout(function() {
+        //         $('#inqueryModal').modal('show');
+        //     }, delayMs);
+        // });
     </script>
 
     <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
@@ -152,8 +153,13 @@
       });
     } );
     </script> --}}
+    <!-- ✅ load Slick ✅ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+        integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             $("#dam_return a").click(function() {

@@ -120,7 +120,7 @@ class FrontendController extends Controller
 
           if ($city != "") {
                $query->where('city', 'LIKE', '%' . $request->city . '%');
-               $query->where('state', 'LIKE', '%' . $request->city . '%');
+               $query->orWhere('state', 'LIKE', '%' . $request->city . '%');
           }
 
           if ($near_by != "") {
@@ -130,16 +130,6 @@ class FrontendController extends Controller
 
           if ($hotel != "") {
                $query->where('name', 'LIKE', '%' . $request->hotel . '%');
-          }
-
-          if ($price != "") {
-               if ($price == 'low-to-high') {
-                    $query->orderBy('veg_sell_price_one', 'asc');
-                    $query->orderBy('non_sell_price_one', 'asc');
-               } elseif ($price == 'high-to-low') {
-                    $query->orderBy('veg_sell_price_one', 'desc');
-                    $query->orderBy('non_sell_price_one', 'desc');
-               }
           }
 
           // Event type category
@@ -166,6 +156,17 @@ class FrontendController extends Controller
 
           if ($theaters != "") {
                $query->where($theaters, $theaters);
+          }
+
+          // Price Shorting
+          if ($price != "") {
+               if ($price == 'low-to-high') {
+                    $query->orderBy('veg_sell_price_one', 'asc');
+                    $query->orderBy('non_sell_price_one', 'asc');
+               } elseif ($price == 'high-to-low') {
+                    $query->orderBy('veg_sell_price_one', 'desc');
+                    $query->orderBy('non_sell_price_one', 'desc');
+               }
           }
 
           $searchProducts = $query->latest()->paginate(50);

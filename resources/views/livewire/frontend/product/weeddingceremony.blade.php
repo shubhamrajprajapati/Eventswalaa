@@ -288,7 +288,7 @@ Launch demo modal
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group" required>
-                                                <select name="occasion_type" id="" class="form-control"
+                                                <select name="occasion_type" id="occasion_type" class="form-control"
                                                     required>
                                                     <option value=""> Select Your Event</option>
                                                     <option value="Wedding Ceremony"> Wedding Ceremony</option>

@@ -404,6 +404,13 @@
                             {{ $searchProducts->appends(request()->input())->links() }}
                         </div>
                     </div>
+
+                    @if (session('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+
                     <div class="row">
 
                         @forelse ($searchProducts as $productItem)
@@ -484,7 +491,12 @@
                                                     </div>
                                                     <p class="text-center">
                                                         <button type="button" class="btn btn-primary"
-                                                            data-toggle="modal" data-target="#inqueryModal">
+                                                            data-toggle="modal" data-target="#inqueryModal"
+                                                            data-event="{{ Request::get('event') }}"
+                                                            data-product-id="{{ $productItem->id }}"
+                                                            data-product-url="{{ url('/venue/' . $productItem->category->slug . '/' . $productItem->slug) }}"
+                                                            data-product-name="{{ $productItem->name }}"
+                                                            data-product-address="{{ $productItem->full_address }}">
                                                             Request to Book
                                                         </button>
                                                     </p>
