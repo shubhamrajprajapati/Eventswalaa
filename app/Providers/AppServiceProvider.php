@@ -25,5 +25,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        // Using view composer to set following variables globally - Added By Shubham
+        view()->composer('layouts.frontend', function ($view) {
+            $view->with('vJs', "?v=" . 1);
+            $view->with('vCss', "?v=" . 1);
+            $view->with('vImg', "?v=" . 1);
+        });
     }
 }

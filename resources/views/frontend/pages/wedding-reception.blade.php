@@ -423,8 +423,8 @@ Launch demo modal
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary btn-md col-md-12">Check
-                                                    availability</button>
+                                                <button type="submit"
+                                                    class="btn btn-primary btn-md col-md-12">Request To Book</button>
                                             </div>
                                         </div>
                                     </div> {{-- Row --}}
