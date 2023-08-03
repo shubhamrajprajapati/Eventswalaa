@@ -121,58 +121,7 @@
 
                         <input type="search" name="city" id="dam" value="{{ Request::get('city') }}"
                             class="form-control search-slt" placeholder="Enter City" autocomplete="off">
-                        <div id="dam_return" class="h-350 bg-white" onclick="myFunction()">
-                            <div class=" pl-5 dropdown-content" id="myDIV" style="width:100%;">
-                                <div style="width:45%;float: left;">
-                                    <div class="h6 text-dark"><strong>Delhi NCR</strong></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Delhi</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Faridabad</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Ghaziabad</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Greater Noida</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Gurgaon</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Noida</a></div>
-                                    <div class="h6 text-dark"><strong>Uttar Pradesh</strong></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Agra</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Aligarh</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Allahabad</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Bareilly</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Bulandshahr</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Kanpur</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Lucknow</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Mathura</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Meerut</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Varanasi</a></div>
-                                    <div class="h6 text-dark"><strong>Bihar</strong></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Patna</a></div>
-
-                                </div>
-                                <div style="width:45%;float: left;">
-                                    <div class="h6 text-dark"><strong>Maharashtra</strong></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Lonavala</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Mumbai</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Nagpur</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Nashik</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Pune</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Shirdi</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Thane</a></div>
-                                    <div class="h6 text-dark"><strong>Rajasthan</strong></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Ajmer</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Alwar</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Bikaner</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Jaipur</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Jaisalmer</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Jodhpur</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Mount Abu</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Pushkar</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Ranthambore</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Udaipur</a></div>
-                                    <div class="h6 text-dark"><strong>Gujarat</strong></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Ahmedabad</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Surat</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Vadodara</a></div>
-                                </div>
-                            </div>
-                        </div>
+                        <x-frontend.city-dropdown-list />
                     </div>
                     {{ insertHiddenField('hotel') }}
 
@@ -223,9 +172,8 @@
                                 {{ insertHiddenField('city') }}
                                 {{ insertHiddenField('near_by') }}
                                 <div class="mt-2">
-                                    <input type="search" name="hotel" id="hotel"
-                                        value="{{ Request::get('hotel') }}" class="form-control search-slt"
-                                        placeholder="Enter hotel name">
+                                    <input type="search" name="hotel" id="hotel" value="{{ Request::get('hotel') }}"
+                                        class="form-control search-slt" placeholder="Enter hotel name">
                                 </div>
 
                                 {{ insertHiddenField('type') }}
@@ -258,9 +206,8 @@
                                 {{ insertHiddenField('hotel') }}
 
                                 <div class="form-check">
-                                    <input class="form-check-input eventType" type="checkbox" name="type"
-                                        value="all" id="type"
-                                        {{ Request::get('type') == 'all' ? 'checked' : '' }}
+                                    <input class="form-check-input eventType" type="checkbox" name="type" value="all"
+                                        id="type" {{ Request::get('type') == 'all' ? 'checked' : '' }}
                                         onchange="selectAllEventType(this, 'eventType');">
                                     <label class="form-check-label" for="type">
                                         All
@@ -268,18 +215,16 @@
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input eventType" type="checkbox" name="hotels"
-                                        value="hotels" id="hotels"
-                                        {{ Request::get('hotels') == 'hotels' ? 'checked' : '' }}>
+                                    <input class="form-check-input eventType" type="checkbox" name="hotels" value="hotels"
+                                        id="hotels" {{ Request::get('hotels') == 'hotels' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="hotels">
                                         Hotels
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input eventType" type="checkbox" name="resorts"
-                                        value="resorts" id="resorts"
-                                        {{ Request::get('resorts') == 'resorts' ? 'checked' : '' }}>
+                                    <input class="form-check-input eventType" type="checkbox" name="resorts" value="resorts"
+                                        id="resorts" {{ Request::get('resorts') == 'resorts' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="resorts">
                                         Resorts
                                     </label>

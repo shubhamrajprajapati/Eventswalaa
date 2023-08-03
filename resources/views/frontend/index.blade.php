@@ -81,58 +81,7 @@
                     <div class="col-md-6 mb-2  p-0 ui-widget">
                         <input type="text" name="city" id="dam" value="{{ Request::get('city') }}"
                             class="form-control search-slt" placeholder="Enter City" autocomplete="off">
-                        <div id="dam_return" class="h-350 bg-white" onclick="myFunction()">
-                            <div class=" pl-5 dropdown-content" id="myDIV" style="width:100%;">
-                                <div style="width:45%;float: left;">
-                                    <div class="h6 text-dark"><strong>Delhi NCR</strong></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Delhi</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Faridabad</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Ghaziabad</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Greater Noida</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Gurgaon</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Noida</a></div>
-                                    <div class="h6 text-dark"><strong>Uttar Pradesh</strong></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Agra</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Aligarh</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Allahabad</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Bareilly</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Bulandshahr</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Kanpur</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Lucknow</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Mathura</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Meerut</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Varanasi</a></div>
-                                    <div class="h6 text-dark"><strong>Bihar</strong></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Patna</a></div>
-
-                                </div>
-                                <div style="width:45%;float: left;">
-                                    <div class="h6 text-dark"><strong>Maharashtra</strong></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Lonavala</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Mumbai</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Nagpur</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Nashik</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Pune</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Shirdi</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Thane</a></div>
-                                    <div class="h6 text-dark"><strong>Rajasthan</strong></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Ajmer</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Alwar</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Bikaner</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Jaipur</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Jaisalmer</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Jodhpur</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Mount Abu</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Pushkar</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Ranthambore</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Udaipur</a></div>
-                                    <div class="h6 text-dark"><strong>Gujarat</strong></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Ahmedabad</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Surat</a></div>
-                                    <div><a class="text-dark" href="javascript:void(0);">Vadodara</a></div>
-                                </div>
-                            </div>
-                        </div>
+                        <x-frontend.city-dropdown-list />
                     </div>
                     {{-- <div class="col-md-3 mb-2  p-0 ui-widget">
                         <input type="search" name="city" id="tags" value="{{ Request::get('search')}}" class="form-control search-slt"  placeholder="Enter Neawer by">
@@ -162,9 +111,8 @@
                     <div class="box-shadow h-100">
                         <a class="text-decoration-none text-dark" href="{{ url('/venue/wedding-ceremony') }}">
                             <div class="what-we-image border-radius text-decoration-none text-dark">
-                                <img src="{{ asset('assets/images/wedding-venues.png') }}"
-                                    class="mx-auto d-block img-fluid" alt="massage services in Gurgaon, Haryana, India"
-                                    style="width: 100%;">
+                                <img src="{{ asset('assets/images/wedding-venues.png') }}" class="mx-auto d-block img-fluid"
+                                    alt="massage services in Gurgaon, Haryana, India" style="width: 100%;">
                             </div>
                             <div class="what-we-headeing text-decoration-none text-dark">
                                 Wedding Ceremony
@@ -179,8 +127,8 @@
                     <div class="box-shadow h-100">
                         <a class="text-decoration-none text-dark" href="{{ url('venue/wedding-reception') }}">
                             <div class="what-we-image border-radius">
-                                <img src="{{ asset('assets/images/marriage-halls.png') }}"
-                                    class="mx-auto d-block img-fluid" alt="Massage services in Gurgaon, Haryana, India">
+                                <img src="{{ asset('assets/images/marriage-halls.png') }}" class="mx-auto d-block img-fluid"
+                                    alt="Massage services in Gurgaon, Haryana, India">
                             </div>
                             <div class="what-we-headeing text-decoration-none text-dark">
                                 Wedding Reception

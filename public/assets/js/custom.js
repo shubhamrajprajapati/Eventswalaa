@@ -58,11 +58,64 @@ $("#inqueryModal").on("show.bs.modal", function (event) {
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     var modal = $(this);
-    modal.find("select#occasion_type").val(event);
-    modal.find(".modal-body input#product_id").val(productId);
-    modal.find(".modal-body input#product_url").val(productUrl);
-    modal.find(".modal-body input#product_name").val(productName);
-    modal.find(".modal-body textarea#product_address").val(productAddress);
+    const occasionType = modal.find("select#occasion_type");
+    const productIdInput = modal.find(".modal-body input#product_id");
+    const productUrlInput = modal.find(".modal-body input#product_url");
+    const productNameInput = modal.find(".modal-body input#product_name");
+    const productAddressTextarea = modal.find(
+        ".modal-body textarea#product_address"
+    );
+
+    occasionType.val(event);
+    productIdInput.val(productId);
+    productUrlInput.val(productUrl);
+    productNameInput.val(productName);
+    productAddressTextarea.val(productAddress);
+
     // Set today date for event
     document.getElementById("occasion_date").valueAsDate = new Date();
+
+    // Hide if product name and address is not given by user
+    if (productNameInput.val() == "") {
+        productIdInput.val("Not Found");
+        productUrlInput.val("#");
+        productNameInput.val("Venue Name Not Given By User");
+        productNameInput.parent().parent().hide();
+    } else {
+        productNameInput.parent().parent().show();
+    }
+
+    if (productAddressTextarea.val() == "") {
+        productAddressTextarea.val("Venue Address Not Given By User");
+        productAddressTextarea.parent().parent().hide();
+    } else {
+        productAddressTextarea.parent().parent().show();
+    }
 });
+
+// Setting cookie in javascript - for inquiry modal
+function setCookie(name, value, secs) {
+    var expires = "";
+    if (secs) {
+        var date = new Date();
+        date.setTime(date.getTime() + secs * 1000);
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(";");
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == " ") c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    document.cookie =
+        name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+}

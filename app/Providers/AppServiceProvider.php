@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Using view composer to set following variables globally - Added By Shubham
         view()->composer('layouts.frontend', function ($view) {
-            $view->with('vJs', "?v=" . 1);
+            $view->with('vJs', "?v=" . 2);
             $view->with('vCss', "?v=" . 1);
             $view->with('vImg', "?v=" . 1);
         });

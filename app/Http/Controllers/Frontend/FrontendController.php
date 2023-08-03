@@ -120,12 +120,10 @@ class FrontendController extends Controller
 
           if ($city != "") {
                $query->where('city', 'LIKE', '%' . $request->city . '%');
-               $query->orWhere('state', 'LIKE', '%' . $request->city . '%');
           }
 
           if ($near_by != "") {
                $query->where('near_by', 'LIKE', '%' . $request->near_by . '%');
-               $query->orWhere('full_address', 'LIKE', '%' . $request->near_by . '%');
           }
 
           if ($hotel != "") {
@@ -169,7 +167,7 @@ class FrontendController extends Controller
                }
           }
 
-          $searchProducts = $query->latest()->paginate(50);
+          $searchProducts = $query->paginate(50);
           $totalResults = $query->count();
 
           $categories = Category::where('status', '0')->get();

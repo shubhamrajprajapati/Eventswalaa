@@ -62,7 +62,7 @@
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> --}}
 
-    <meta name="google-site-verification" content="OEGc_ARFEeTxp3clZ39iLPCZp3foXG5dVaXJlYLSchk" />
+    <meta name="google-site-verification" content="Dsm19a0LI0Hb_B5OvsV1uWD6c7AwXK7SDrXIC17lGw8" />
 
 </head>
 
@@ -128,15 +128,7 @@
                 .toggleClass("fa-minus fa-plus");
         });
     </script>
-    <script>
-        // $(window).on('load', function() {
-        //     var delayMs = 10000; // 150000 delay in milliseconds
 
-        //     setTimeout(function() {
-        //         $('#inqueryModal').modal('show');
-        //     }, delayMs);
-        // });
-    </script>
 
     <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
     {{-- <script>
@@ -159,6 +151,23 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="{{ asset("assets/js/custom.js$vJs") }}"></script>
+
+    <script>
+        $(window).on('load', function() {
+
+            var delayMs = 1000; // 150000 delay in milliseconds
+            setTimeout(function() {
+                const canShowInquiryModal = getCookie('showInquiryModal');
+
+                // If cookie not set then show modal
+                if (!canShowInquiryModal) {
+                    $('#inqueryModal').modal('show');
+                    setCookie('showInquiryModal', true, 60 * 30); // 30 min cookie
+                }
+
+            }, delayMs);
+        });
+    </script>
 
     <script>
         $(document).ready(function() {
