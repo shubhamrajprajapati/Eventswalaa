@@ -312,4 +312,16 @@ class FrontendController extends Controller
                ->latest()->paginate(50);
           return view('frontend.pages.corporate-training', compact('allFilter', 'category'));
      }
+
+     // Added by Shubham Raj | For PWA
+     public function appManifest()
+     {
+          // Return dynamic manifest file
+          return response()->view('frontend.pwa.manifest')->withHeaders(['Content-Type' => 'application/json']);
+     }
+
+     public function appBrowserconfig()
+     {
+          return response()->view('frontend.pwa.browserconfig')->withHeaders(['Content-Type' => 'application/xml']);
+     }
 }

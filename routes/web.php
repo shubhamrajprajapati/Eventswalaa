@@ -64,6 +64,9 @@ Route::controller(App\Http\Controllers\Frontend\FrontendController::class)->grou
     Route::get('/wedding-reception', 'filterWeddingReception');
     Route::get('/birthday-party-for-kids', 'filterBirthdayPartyKids');
     Route::get('/corporate-training', 'filterCorporateTraining');
+    // Added By Shubham for PWA
+    Route::get('/manifest.json', 'appManifest')->name('manifest.json');
+    Route::get('/browserconfig.xml', 'appBrowserconfig')->name('browserconfig.xml');
 });
 
 Auth::routes();
@@ -244,3 +247,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+// For demo - Remove later | See app_settings.php config file in json
+Route::get('app-info', [App\Http\Controllers\AppSettingController::class, 'appInfo']);
