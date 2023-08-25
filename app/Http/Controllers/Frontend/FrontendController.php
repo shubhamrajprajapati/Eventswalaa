@@ -168,11 +168,10 @@ class FrontendController extends Controller
           }
 
           $searchProducts = $query->paginate(50);
-          $totalResults = $query->count();
 
           $categories = Category::where('status', '0')->get();
 
-          return view('frontend.venue.products.search', compact('searchProducts', 'categories', 'totalResults'));
+          return view('frontend.venue.products.search', compact('searchProducts', 'categories'));
      }
 
      public function filterAll()

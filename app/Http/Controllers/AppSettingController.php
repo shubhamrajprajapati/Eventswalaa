@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
+/**
+ * This is written by Shubham Raj to control all settings
+ * for this app/website from admin panel. Like change .env file,
+ * change app_settings.php config files and much more. See all
+ * functions below to explore.
+ */
+
 class AppSettingController extends Controller
 {
 

@@ -14,41 +14,44 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::controller(App\Http\Controllers\Frontend\ContactController::class)->group(function () {
+    Route::get('contact-us', 'index')->name('frontend.contact-us');
+    Route::get('faq', 'faq')->name('frontend.faq');
+    Route::post('/contact-form', 'storeContactForm')->name('contact-form.store');
+});
 
-// Route::get('/', function () { return view('frontend.index');});
+Route::controller(App\Http\Controllers\Frontend\BlogController::class)->group(function () {
+    Route::get('/blog', 'categories');
+    Route::get('/blog/{category_slug}', 'blogdata');
+    Route::get('/blog/{category_slug}/{blog_slug}', 'blogView');
+});
 
-Route::get('contact-us', [App\Http\Controllers\Frontend\ContactController::class, 'index']);
-Route::get('faq', [App\Http\Controllers\Frontend\ContactController::class, 'faq']);
-Route::get('privacy-policy', [App\Http\Controllers\Frontend\FrontendController::class, 'privacyPolicy']);
-Route::get('terms-and-conditions', [App\Http\Controllers\Frontend\FrontendController::class, 'termsConditions']);
-Route::get('/about-us', [App\Http\Controllers\Frontend\FrontendController::class, 'aboutUs']);
-Route::post('/contact-form', [App\Http\Controllers\Frontend\ContactController::class, 'storeContactForm'])->name('contact-form.store');
-Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
-Route::get('/venue', [App\Http\Controllers\Frontend\FrontendController::class, 'categories']);
-Route::get('/venue/{category_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'products']);
-Route::get('/venue/{category_slug}/{product_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'productsView']);
-Route::get('/search', [App\Http\Controllers\Frontend\FrontendController::class, 'searchProducts']);
+// Get all sitemaps for website | Added by Shubham Raj
+Route::controller(App\Http\Controllers\Frontend\SitemapXmlController::class)->group(function () {
+    Route::get('sitemap.xml', 'index')->name('sitemap.index'); // Parent Sitemap Index
+    Route::get('main-stylesheet.xls', 'sitemapMainXls')->name('main-sitemap.xls'); // Parent Sitemap Stylesheet File
+    Route::get('sitemap/frontend.xml', 'frontendSitemap')->name('sitemap.frontend');; // Frontend Sitemap Index
 
-Route::get('/blog', [App\Http\Controllers\Frontend\BlogController::class, 'categories']);
-Route::get('/blog/{category_slug}', [App\Http\Controllers\Frontend\BlogController::class, 'blogdata']);
-Route::get('/blog/{category_slug}/{blog_slug}', [App\Http\Controllers\Frontend\BlogController::class, 'blogView']);
+    // Grouped all frontend sitemap index
+    Route::prefix('sitemap/frontend')->name('sitemap.frontend.')->group(function () {
+        Route::get('home.xml', 'home')->name('home');
+        Route::get('search-pages.xml', 'searchPages')->name('search-pages');
+        Route::get('business-pages.xml', 'businessPages')->name('business-pages');
+        Route::get('legal-pages.xml', 'legalPages')->name('legal-pages');
+        Route::get('contact-pages.xml', 'contactPages')->name('contact-pages');
+        Route::get('about-us-pages.xml', 'aboutUsPages')->name('about-us-pages');
+        Route::get('faq-pages.xml', 'faqPages')->name('faq-pages');
+        Route::get('event-pages.xml', 'eventPages')->name('event-pages');
+        Route::get('event-types.xml', 'eventTypes')->name('event-types');
+        Route::get('venues.xml', 'venues')->name('venues');
+        Route::get('blog-categories.xml', 'blogCategories')->name('blog-categories');
+        Route::get('blog-posts.xml', 'blogPosts')->name('blog-posts');
+    });
+});
 
-Route::get('/sitemap.xml', [App\Http\Controllers\Frontend\SitemapXmlController::class, 'index']);
-// Route::get('/sitemap.xml', [App\Http\Controllers\Frontend\SitemapXmlController::class, 'index'])->name('sitemap.index');
-//  Route::get('/sitemap.xml',[App\Http\Controllers\Frontend\SitemapXmlController::class, 'index'])->name('sitemap.index');
-// Route::get('/sitemap.xml', 'SitemapController@index');
-// Route::get('/sitemap.xml/products', 'SitemapController@product');
-// Route::get('/sitemap.xml/FAQ', 'SitemapController@FAQ');
-// Route::get('/sitemap.xml/Inquiry', 'SitemapController@inquiry');
-// Route::get('sitemap.xml', [SiteMapController::class, 'sitemap'])->name('sitemap');
-// Route::get('/sitemap', function()
-// {
-//    return Response::view('sitemap.index')->header('Content-Type', 'application/xml');
-// });
+
 Route::controller(App\Http\Controllers\Frontend\FrontendController::class)->group(function () {
+    Route::get('/', 'index')->name('frontend.home');
     Route::get('/all', 'filterAll');
     Route::get('/hotels', 'filterHotels');
     Route::get('/resorts', 'filterResorts');
@@ -67,16 +70,24 @@ Route::controller(App\Http\Controllers\Frontend\FrontendController::class)->grou
     // Added By Shubham for PWA
     Route::get('/manifest.json', 'appManifest')->name('manifest.json');
     Route::get('/browserconfig.xml', 'appBrowserconfig')->name('browserconfig.xml');
+
+    // Re-arranged in group
+    Route::get('/venue', 'categories')->name('frontend.events');
+    Route::get('/venue/{category_slug}', 'products');
+    Route::get('/venue/{category_slug}/{product_slug}', 'productsView');
+    Route::get('/search', 'searchProducts')->name('frontend.search');
+    Route::get('/about-us', 'aboutUs')->name('frontend.about-us');
+    Route::get('privacy-policy', 'privacyPolicy')->name('frontend.privacy-policy');
+    Route::get('terms-and-conditions', 'termsConditions')->name('frontend.terms-and-conditions');
 });
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/list-your-business', [App\Http\Controllers\Frontend\ListbusinessController::class, 'index']);
-Route::post('/business-store', [App\Http\Controllers\Frontend\ListbusinessController::class, 'store']);
-Route::post('/business-store', [App\Http\Controllers\Frontend\ListbusinessController::class, 'store'])->name('business-store.store');
-
+Route::controller(App\Http\Controllers\Frontend\ListbusinessController::class)->group(function () {
+    Route::get('/list-your-business', 'index')->name('frontend.list-your-business');
+    Route::post('/business-store', 'store');
+    Route::post('/business-store', 'store')->name('business-store.store');
+});
 
 // Vendor
 Route::prefix('vendors')->middleware(['auth', 'isVendor'])->group(function () {

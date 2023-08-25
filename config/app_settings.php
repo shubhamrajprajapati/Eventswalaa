@@ -106,6 +106,10 @@ return [
                 ]
             ],
 
+            'sitemap' => [
+                'updated_at' => '2023-08-23T06:08:11+05:30',
+            ],
+
             'website_ownership_verification_meta_code' => [
 
                 'google' => json_decode(

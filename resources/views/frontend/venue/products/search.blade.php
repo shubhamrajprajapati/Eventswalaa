@@ -343,7 +343,7 @@
                 <div class="col-lg-8">
                     <div class="row justify-content-center pb-2">
                         <div class="col-lg-4 px-0">
-                            <h4>Search Results ({{ $totalResults }})</h4>
+                            <h4>Search Results ({{ $searchProducts->total() }})</h4>
                         </div>
                         <div class="col-lg-8 pb-2 text-right">
                             {{ $searchProducts->appends(request()->input())->links() }}
