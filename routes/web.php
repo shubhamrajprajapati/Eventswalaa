@@ -30,7 +30,6 @@ Route::controller(App\Http\Controllers\Frontend\BlogController::class)->group(fu
 Route::controller(App\Http\Controllers\Frontend\SitemapXmlController::class)->group(function () {
     Route::get('sitemap.xml', 'index')->name('sitemap.index'); // Parent Sitemap Index
     Route::get('main-stylesheet.xls', 'sitemapMainXls')->name('main-sitemap.xls'); // Parent Sitemap Stylesheet File
-    Route::get('sitemap/frontend.xml', 'frontendSitemap')->name('sitemap.frontend');; // Frontend Sitemap Index
 
     // Grouped all frontend sitemap index
     Route::prefix('sitemap/frontend')->name('sitemap.frontend.')->group(function () {

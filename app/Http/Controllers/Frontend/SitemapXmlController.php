@@ -29,12 +29,7 @@ class SitemapXmlController extends Controller
         return response()->view('sitemap.main-stylesheet')->header('Content-Type', 'text/xls');
     }
 
-    public function frontendSitemap()
-    {
-        return response()->view('frontend.sitemap.index')->header('Content-Type', 'text/xml');
-    }
-
-    public function home(Request $request)
+    public function home()
     {
         return response()->view('frontend.sitemap.home')->header('Content-Type', 'text/xml');
     }
@@ -95,7 +90,8 @@ class SitemapXmlController extends Controller
 
         // $postsitmap->writeToFile(public_path('/sitemap/venues.xml'));
 
-        $venues = Product::latest()->get(['name', 'slug', 'category_id', 'updated_at']);
+        $venues = Product::latest()->get(['id', 'name', 'slug', 'category_id', 'updated_at']);
+
         return response()->view('frontend.sitemap.venues', compact('venues'))->header('Content-Type', 'text/xml');
     }
 

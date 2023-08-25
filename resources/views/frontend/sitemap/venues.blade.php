@@ -3,14 +3,23 @@
     xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd"
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
+    
     @foreach ($venues as $venue)
-        <url>
-            <loc>{{ URL('/') . '/venue/' . $venue->category->slug . '/' . $venue->slug }}</loc>
-            <lastmod>{{ $venue->updated_at->format(DateTime::ATOM) }}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>
-        </url>
-    @endforeach
 
+    <url>
+        <loc>{{ URL('/') . '/venue/' . $venue->category->slug . '/' . $venue->slug }}</loc>
+        <lastmod>{{ $venue->updated_at->format(DateTime::ATOM) }}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+        @foreach ($venue->productImages as $image)
+
+        <image:image>
+            <image:loc>
+                {{ asset($image->image) }}
+            </image:loc>
+        </image:image>
+        @endforeach
+
+    </url>
+    @endforeach
 </urlset>

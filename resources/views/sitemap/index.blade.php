@@ -3,8 +3,5 @@
     xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd"
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <sitemap>
-        <loc>{{ Route('sitemap.frontend') }}</loc>
-        <lastmod>{{ config('app_settings.frontend.seo.sitemap.updated_at') }}</lastmod>
-    </sitemap>
+    @include('frontend.sitemap.index')
 </sitemapindex>
