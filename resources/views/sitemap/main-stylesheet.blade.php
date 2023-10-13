@@ -103,7 +103,8 @@
                     <table id="sitemap" cellpadding="3">
                         <thead>
                             <tr>
-                                <th width="75%">Sitemap</th>
+                                <th width="5%">#</th>
+                                <th width="70%">Sitemap</th>
                                 <th width="25%">Last Modified</th>
                             </tr>
                         </thead>
@@ -113,6 +114,9 @@
                                     <xsl:value-of select="sitemap:loc" />
                                 </xsl:variable>
                                 <tr>
+                                    <td>
+                                        <xsl:value-of select="position()" />
+                                    </td>
                                     <td>
                                         <a href="{$sitemapURL}">
                                             <xsl:value-of select="sitemap:loc" />
@@ -133,7 +137,8 @@
                     <table id="sitemap" cellpadding="3">
                         <thead>
                             <tr>
-                                <th width="60%">URL</th>
+                                <th width="5%">#</th>
+                                <th width="55%">URL</th>
                                 <th width="12%">Change Freq.</th>
                                 <th width="5%">Priority</th>
                                 <th width="5%">Images</th>
@@ -145,6 +150,9 @@
                             <xsl:variable name="upper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
                             <xsl:for-each select="sitemap:urlset/sitemap:url">
                                 <tr>
+                                    <td>
+                                        <xsl:value-of select="position()" />
+                                    </td>
                                     <td>
                                         <xsl:variable name="itemURL">
                                             <xsl:value-of select="sitemap:loc" />
