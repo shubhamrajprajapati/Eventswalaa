@@ -90,7 +90,7 @@ class SitemapXmlController extends Controller
 
         // $postsitmap->writeToFile(public_path('/sitemap/venues.xml'));
 
-        $venues = Product::latest()->get(['id', 'name', 'slug', 'category_id', 'updated_at']);
+        $venues = Product::latest()->get(['id', 'name', 'slug', 'city', 'category_id', 'updated_at']);
 
         return response()->view('frontend.sitemap.venues', compact('venues'))->header('Content-Type', 'text/xml');
     }

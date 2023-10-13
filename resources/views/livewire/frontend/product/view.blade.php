@@ -32,8 +32,8 @@
   <div class="col-lg-12">
      <div class="mt-2 mb-2">
         <a href="{{ url('/')}}"> Home /</a> 
-        <a href="{{ url('/venue/'.$product->category->slug)}}">{{ $product->category->name}}/</a> 
-        <a href="{{ url('/')}}" class="text-dark"> {{ $product->name}}</a> 
+        <a href="{{ url('/venue/'.$product->citySlug())}}">{{ $product->city}}/</a> 
+        <a href="javascript:;" class="text-dark" style="text-decoration: none; pointer-events: none"> {{ $product->name}}</a> 
      </div>
   </div>
   <div class="col-lg-12 mt-4">

@@ -44,33 +44,29 @@ class FrontendController extends Controller
           }
      }
 
-     public function productsView(string $category_slug, string $product_slug)
+     public function productsView(string $city_slug, string $product_slug)
      {
-          $category = Category::where('slug', $category_slug)->first();
+          $category = Category::where('slug', $city_slug)->first();
+          $city_slug = Str::slug($city_slug);
 
-          if ($category) {
+          $product = Product::where('city', $city_slug)->where('slug', $product_slug)->where('status', '0')->first();
+          $product_other_details = $product->productOtherDetails()->first();
 
-               $product = $category->products()->where('slug', $product_slug)->where('status', '0')->first();
-               $product_other_details = $product->productOtherDetails()->first();
+          if ($product) {
+               $ratings = Rating::where('prod_id', $product->id)->get();
+               $ratings_show = Rating::where('prod_id', $product->id)->get();
+               $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+               $user_rating = Rating::where('prod_id', $product->id)->where('user_id', Auth::id())->first();
 
-               if ($product) {
-                    $ratings = Rating::where('prod_id', $product->id)->get();
-                    $ratings_show = Rating::where('prod_id', $product->id)->get();
-                    $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
-                    $user_rating = Rating::where('prod_id', $product->id)->where('user_id', Auth::id())->first();
-
-                    if ($ratings->count() > 0) {
-                         $rating_value = $rating_sum / $ratings->count();
-                    } else {
-                         $rating_value = 0;
-                    }
-                    return view(
-                         'frontend.venue.products.view',
-                         compact('product', 'product_other_details', 'category', 'ratings', 'rating_value', 'ratings_show', 'user_rating')
-                    );
+               if ($ratings->count() > 0) {
+                    $rating_value = $rating_sum / $ratings->count();
                } else {
-                    return redirect()->back();
+                    $rating_value = 0;
                }
+               return view(
+                    'frontend.venue.products.view',
+                    compact('product', 'product_other_details', 'category', 'ratings', 'rating_value', 'ratings_show', 'user_rating')
+               );
           } else {
                return redirect()->back();
           }

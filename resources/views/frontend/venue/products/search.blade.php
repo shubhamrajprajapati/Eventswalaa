@@ -364,7 +364,7 @@
                                     <div class="product-card h-100">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <a href="{{ url('/venue/' . $productItem->category->slug . '/' . $productItem->slug) }}"
+                                                <a href="{{ url('/venue/' . $productItem->citySlug() . '/' . $productItem->slug) }}"
                                                     class="text-black text-decoration-none" target="_blank">
                                                     @if ($productItem->productImages->count() > 0)
                                                         <img src="{{ asset($productItem->productImages[0]->image) }}"
@@ -378,7 +378,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-md-4">
-                                                <a href="{{ url('/venue/' . $productItem->category->slug . '/' . $productItem->slug) }}"
+                                                <a href="{{ url('/venue/' . $productItem->citySlug() . '/' . $productItem->slug) }}"
                                                     class="text-dark text-decoration-none" target="_blank">
                                                     <div class="h5 gradient-h5  py-2 ">
                                                         {{ $productItem->name }}
@@ -439,7 +439,7 @@
                                                             data-toggle="modal" data-target="#inqueryModal"
                                                             data-event="{{ Request::get('event') }}"
                                                             data-product-id="{{ $productItem->id }}"
-                                                            data-product-url="{{ url('/venue/' . $productItem->category->slug . '/' . $productItem->slug) }}"
+                                                            data-product-url="{{ url('/venue/' . $productItem->citySlug() . '/' . $productItem->slug) }}"
                                                             data-product-name="{{ $productItem->name }}"
                                                             data-product-address="{{ $productItem->full_address }}">
                                                             Request to Book

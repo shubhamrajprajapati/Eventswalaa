@@ -8,6 +8,7 @@ use App\Models\ProductImage;
 use App\Models\ProductColor;
 use App\Models\Otherdetail;
 use App\Models\Order;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -116,6 +117,9 @@ class Product extends Model
 
     ];
 
+    public function citySlug(){
+        return Str::slug($this->city);
+    }
 
     public function productImages()
     {

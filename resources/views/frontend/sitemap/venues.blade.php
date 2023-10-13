@@ -7,7 +7,7 @@
     @foreach ($venues as $venue)
 
     <url>
-        <loc>{{ URL('/') . '/venue/' . $venue->category->slug . '/' . $venue->slug }}</loc>
+        <loc>{{ URL('/') . '/venue/' . $venue->citySlug() . '/' . $venue->slug }}</loc>
         <lastmod>{{ $venue->updated_at->format(DateTime::ATOM) }}</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>

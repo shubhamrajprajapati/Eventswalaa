@@ -73,7 +73,7 @@ Route::controller(App\Http\Controllers\Frontend\FrontendController::class)->grou
     // Re-arranged in group
     Route::get('/venue', 'categories')->name('frontend.events');
     Route::get('/venue/{category_slug}', 'products');
-    Route::get('/venue/{category_slug}/{product_slug}', 'productsView');
+    Route::get('/venue/{city_slug}/{product_slug}', 'productsView');
     Route::get('/search', 'searchProducts')->name('frontend.search');
     Route::get('/about-us', 'aboutUs')->name('frontend.about-us');
     Route::get('privacy-policy', 'privacyPolicy')->name('frontend.privacy-policy');
