@@ -47,7 +47,7 @@ class FrontendController extends Controller
      public function productsView(string $city_slug, string $product_slug)
      {
           $category = Category::where('slug', $city_slug)->first();
-          $city_slug = Str::slug($city_slug);
+          $city_slug = Str::slug($city_slug, ' ');
 
           $product = Product::where('city', $city_slug)->where('slug', $product_slug)->where('status', '0')->first();
           $product_other_details = $product->productOtherDetails()->first();
