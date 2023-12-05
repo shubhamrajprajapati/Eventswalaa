@@ -50,9 +50,9 @@ class FrontendController extends Controller
           $city_slug = Str::slug($city_slug, ' ');
 
           $product = Product::where('city', $city_slug)->where('slug', $product_slug)->where('status', '0')->first();
-          $product_other_details = $product->productOtherDetails()->first();
-
+          
           if ($product) {
+               $product_other_details = $product->productOtherDetails()->first();
                $ratings = Rating::where('prod_id', $product->id)->get();
                $ratings_show = Rating::where('prod_id', $product->id)->get();
                $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
@@ -68,7 +68,7 @@ class FrontendController extends Controller
                     compact('product', 'product_other_details', 'category', 'ratings', 'rating_value', 'ratings_show', 'user_rating')
                );
           } else {
-               return redirect()->back();
+               return abort(404);
           }
      }
 
